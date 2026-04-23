@@ -1,59 +1,92 @@
-# MyStoryblokApp
+# Storyblok Core Space Blueprint: Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Integrate [Angular](https://angular.dev) with [Storyblok](http://www.storyblok.com) as a headless CMS.
 
-## Development server
+This blueprint is ideal for kickstarting new Storyblok and Angular projects. What's inside:
 
-To start a local development server, run:
+- Pre-configured default blocks: `page`, `teaser`, `grid`, and `feature`.
+- Support for the Visual Editor's live preview.
+- Dynamic routing to fetch and render new stories automatically.
+- Minimal styling.
 
-```bash
-ng serve
+> [!TIP]
+> Follow our [Angular guide](https://www.storyblok.com/docs/guides/angular/) for a step-by-step walkthrough and learn more about Storyblok's range of features, including rich text rendering, custom content modeling, and internationalization. See the [@storyblok/angular package reference](https://storyblok.com/docs/libraries/js/angular-sdk) for further information.
+
+---
+
+[![Try Storyblok free](https://img.shields.io/badge/Try%20Storyblok-dad4ff.svg?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQuNzA3IDIuNTM4aDIyLjUyOXYyMy41ODdINC43MDd6IiBzdHlsZT0iZmlsbDojZmZmIi8+PHBhdGggZmlsbD0iIzFmMWYxZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMS43NDMgMi42MDFBMi41OTcgMi41OTcgMCAwIDEgNC4zMzUgMGgyMy4zM2EyLjU5NyAyLjU5NyAwIDAgMSAyLjU5MiAyLjYwMXYyMy40MTFhMi41OTcgMi41OTcgMCAwIDEtMi41OTIgMi42MDJIMTIuNTQ4bC0zLjg3MiAzLjIwOGEuNzcuNzcgMCAwIDEtMS4yNjEtLjU5N3YtMi42MTFoLTMuMDhhMi41OTcgMi41OTcgMCAwIDEtMi41OTItMi42MDJabTUuNjcgMi4xMjdoMTIuNDYyYzIuNjkxIDAgNC44NzMgMi4xOSA0Ljg3MyA0Ljg5IDAgMi4xNjQtMS40IDQtMy4zNDIgNC42NDRhNC44ODcgNC44ODcgMCAwIDEgMy45OSA0LjgxYzAgMi43MDEtMi4xODEgNC44OS00Ljg3MyA0Ljg5SDcuNDEzdi05LjQ1NFptMTAuMzY0IDQuNEgxMS45NXYyLjkzNGg1LjgyOGMuODA4IDAgMS40NjItLjY1NiAxLjQ2Mi0xLjQ2NyAwLS44MS0uNjU0LTEuNDY3LTEuNDYyLTEuNDY3em0tNS44MjggNi41Mmg2LjMxNGMuODk3IDAgMS42MjQuNzMgMS42MjQgMS42MyAwIC45MDEtLjcyNyAxLjYzLTEuNjI0IDEuNjNoLTYuMzE0eiIgY2xpcC1ydWxlPSJldmVub2RkIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjEuNTE3NzUiLz48L3N2Zz4K&labelColor=ffffff)](https://app.storyblok.com/#/signup)
+[![Join the Storyblok Discord community](https://img.shields.io/discord/700316478792138842?style=for-the-badge&logo=discord&label=Join%20our%20community&labelColor=ffffff&color=dad4ff)](https:/storyblok.com/join-discord)
+
+## Get Started
+
+**No Storyblok account yet? [Sign up now](https://app.storyblok.com/#/signup?utm_source=docs) to experience a 14-day free trial of all features and enjoy our completely free Starter plan.**
+
+1. Create a new empty Storyblok space
+2. Create a new repository based on this template
+3. Open the project on your device
+4. Install dependencies
+
+```sh
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Authentication
 
-## Code scaffolding
+Open `src/environments/environment.ts` and set the access token of your space:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```ts
+export const environment = {
+  production: true,
+  accessToken: '<REPLACE_WITH_YOUR_TOKEN>',
+  region: 'eu' as const
+};
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Do the same in `src/environments/environment.development.ts`, which Angular swaps in automatically during development builds:
 
-```bash
-ng generate --help
+```ts
+export const environment = {
+  production: false,
+  accessToken: '<REPLACE_WITH_YOUR_TOKEN>',
+  region: 'eu' as const
+};
 ```
 
-## Building
+> [!TIP]
+> Copy your space's preview access token from **Settings > Access Tokens**.
+> Learn more about Storyblok [access tokens](https://www.storyblok.com/docs/concepts/access-tokens).
 
-To build the project run:
+### Connect the Visual Editor
 
-```bash
-ng build
+To render a preview of the local project in the Visual Editor, follow these steps:
+
+1. In your space, navigate to **Settings > Visual Editor**.
+2. Set the default environment to `https://localhost:4200/`.
+3. Save.
+4. Open the `home` story.
+5. Click **Config**.
+6. Type `/` in the **Real path**.
+
+Run the development server:
+
+```sh
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+> [!IMPORTANT]
+> To connect the Storyblok Visual Editor, the local project must run over HTTPS. The `start` script runs `ng serve --ssl` for this reason. Learn more in the [Visual Editor concept](https://www.storyblok.com/docs/concepts/visual-editor#local-development-via-https). Check the [Visual Preview section of the Angular guide](https://storyblok.com/docs/guides/angular/visual-preview) for detailed instructions.
 
-## Running unit tests
+Back in Storyblok, open the **Home** story to start editing.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Happy building!
 
-```bash
-ng test
-```
+## Resources
 
-## Running end-to-end tests
+- To learn more about what you can do with Storyblok, visit [our documentation and learning hub](https://www.storyblok.com/docs).
+- To learn more about the integration between Storyblok and Angular, check our [dedicated developer tutorials](https://www.storyblok.com/tutorials?technologies=angular).
+- To learn more about Angular, check the [official documentation](https://angular.dev).
 
-For end-to-end (e2e) testing, run:
+### Support
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Have questions, need help, want to chat with other users? [Join our Discord community](https://storyblok.com/join-discord).
+- Visit the Storyblok [Help Center](https://support.storyblok.com/).
