@@ -9,11 +9,7 @@ export interface GridBlok extends SbBlokData {
   selector: 'app-grid',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [StoryblokComponent],
-  template: `
-    <div class="grid">
-      <sb-component [sbBlok]="blok().columns" />
-    </div>
-  `,
+  template: `<sb-component class="grid" [sbBlok]="blok().columns" />`,
 })
 export class GridComponent {
   readonly blok = input.required<GridBlok>();
