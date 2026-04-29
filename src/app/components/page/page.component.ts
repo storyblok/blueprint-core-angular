@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, input } from '@angular/core';
-import { SbBlokDirective, type SbBlokData } from '@storyblok/angular';
+import { type SbBlokData, StoryblokComponent } from '@storyblok/angular';
 
 export interface PageBlok extends SbBlokData {
   body?: SbBlokData[];
@@ -8,16 +8,16 @@ export interface PageBlok extends SbBlokData {
 @Component({
   selector: 'app-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SbBlokDirective],
+  imports: [StoryblokComponent],
   template: `
     <div class="page">
-      @for (blok of blok().body ?? []; track blok._uid) {
-        <ng-container [sbBlok]="blok" />
-      }
+      <sb-component [sbBlok]="blok().body" />
     </div>
   `,
 })
 export class PageComponent {
 // Angular signal
   readonly blok = input.required<PageBlok>();
+
+
 }
