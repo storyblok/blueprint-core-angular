@@ -9,15 +9,10 @@ export interface PageBlok extends SbBlokData {
   selector: 'app-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [StoryblokComponent],
-  template: `
-    <div class="page">
-      <sb-component [sbBlok]="blok().body" />
-    </div>
-  `,
+  template: `<sb-component class="page" [sbBlok]="blok().body"  />`,
 })
 export class PageComponent {
 // Angular signal
   readonly blok = input.required<PageBlok>();
-
 
 }
