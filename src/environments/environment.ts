@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  accessToken: "REPLACE_WITH_YOUR_TOKEN",
-  region: 'eu' as const
+  accessToken: 'STORYBLOK_DELIVERY_API_TOKEN', // Replace with your Storyblok Delivery API token
+  region: 'STORYBLOK_REGION' as const, // Replace with your Storyblok region (e.g. "eu", "us", or "ap")
 };
