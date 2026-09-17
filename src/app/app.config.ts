@@ -7,6 +7,8 @@ import { environment } from '../environments/environment';
 import { provideStoryblok, withStoryblokComponents, withLivePreview } from '@storyblok/angular';
 import { storyblokComponents } from './storyblok.components';
 
+type StoryblokRegion = 'eu' | 'us' | 'cn' | 'ap' | 'ca';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -16,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideStoryblok(
       {
         accessToken: environment.accessToken,
-        region: environment.region,
+        region: environment.region as unknown as StoryblokRegion,
       },
       withStoryblokComponents(storyblokComponents),
       withLivePreview(),
