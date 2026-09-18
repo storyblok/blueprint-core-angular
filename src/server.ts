@@ -13,7 +13,29 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        'frame-ancestors': [
+          "'self'",
+          'https://app.storyblok.com',
+          'https://app.storyblokchina.cn',
+        ],
+        'connect-src': [
+          "'self'",
+          'https://api.storyblok.com',
+          'https://api-us.storyblok.com',
+          'https://api-ap.storyblok.com',
+          'https://api-ca.storyblok.com',
+          'https://app.storyblokchina.cn',
+        ],
+        'img-src': ["'self'", 'data:', 'https://a.storyblok.com'],
+      },
+    },
+    xFrameOptions: false,
+  }),
+);
 
 /**
  * Example Express Rest API endpoints can be defined here.
