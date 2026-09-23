@@ -8,7 +8,6 @@ import {
   provideStoryblok,
   withStoryblokComponents,
   withLivePreview,
-  type StoryblokClientConfig,
 } from '@storyblok/angular';
 import { storyblokComponents } from './storyblok.components';
 
@@ -21,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideStoryblok(
       {
         accessToken: environment.accessToken,
-        region: environment.region as unknown as StoryblokClientConfig['region'],
+        region: environment.region,
       },
       withStoryblokComponents(storyblokComponents),
       withLivePreview(),
