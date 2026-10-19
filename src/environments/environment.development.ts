@@ -1,10 +1,7 @@
 import { StoryblokClientConfig } from "@storyblok/angular";
 
-declare const STORYBLOK_DELIVERY_API_TOKEN: string;
-declare const STORYBLOK_REGION: string;
-
 export const environment = {
   production: false,
-  accessToken: STORYBLOK_DELIVERY_API_TOKEN, // Replace with your Storyblok Delivery API token
-  region: STORYBLOK_REGION as StoryblokClientConfig['region'], // Replace with your Storyblok region (e.g. "eu", "us", or "ap")
+  accessToken: 'STORYBLOK_DELIVERY_API_TOKEN', // Replace with your Storyblok Delivery API token
+  region: 'STORYBLOK_REGION' as StoryblokClientConfig['region'], // Replace with your Storyblok region (e.g. "eu", "us", or "ap")
 };
